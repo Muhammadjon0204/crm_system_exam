@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi.Controllers;
 
 [ApiController]
-[Route("groups")]
-public class GroupServiceController
+[Route("api/groups")]
+public class GroupServiceController(IGroupService _groupService)
 {
-    private readonly IGroupService _groupService = new GroupService();
 
     [HttpGet]
     public async Task<List<Group>> GetAllAsync()
@@ -42,37 +41,23 @@ public class GroupServiceController
     {
         return await _groupService.DeleteAsync(id);
     }
-    
+
     [HttpPost("{groupId:int}/students/{studentId:int}")]
     public async Task<string> AddStudentAsync(int groupId, int studentId)
     {
         return await _groupService.AddStudentAsync(groupId, studentId);
     }
-    
+
     [HttpDelete("{groupId:int}/students/{studentId:int}")]
     public async Task<string> RemoveStudentAsync(int groupId, int studentId)
     {
         return await _groupService.RemoveStudentAsync(groupId, studentId);
     }
-    
+
     [HttpGet("{groupId:int}/students")]
     public async Task<List<Student>> GetStudentsAsync(int groupId)
     {
         return await _groupService.GetStudentsAsync(groupId);
-    }
-
-    [HttpGet("{groupId:int}/timetable")]
-    public async Task<List<TimeTable>> GetTimetableAsync(int groupId)
-    {
-        var timeTableService = new TimeTableService();
-        return await timeTableService.GetByGroupIdAsync(groupId);
-    }
-
-    [HttpGet("{groupId:int}/progress")]
-    public async Task<object> GetProgressAsync(int groupId)
-    {
-        var progressService = new ProgressBookService();
-        return await progressService.GetByGroupIdAsync(groupId);
     }
 
     // BONUS

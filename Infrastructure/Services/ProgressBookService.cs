@@ -5,9 +5,8 @@ using Infrastructure.Interface;
 
 namespace Infrastructure.Services;
 
-public class ProgressBookService : IProgressBookService
+public class ProgressBookService(DataContext _dataContext) : IProgressBookService
 {
-    private readonly DataContext _dataContext = new();
 
     public async Task<string> AddAsync(ProgressBook progressBook)
     {

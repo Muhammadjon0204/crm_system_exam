@@ -5,9 +5,8 @@ using Infrastructure.Interface;
 
 namespace Infrastructure.Services;
 
-public class StudentService : IStudentService
+public class StudentService(DataContext _dataContext) : IStudentService
 {
-    private readonly DataContext _dataContext = new();
 
     public async Task<List<Student>> GetAllAsync()
     {

@@ -6,10 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi.Controllers;
 
 [ApiController]
-[Route("students")]
-public class StudentServiceController
+[Route("api/students")]
+public class StudentServiceController(IStudentService _studentService)
 {
-    private readonly IStudentService _studentService = new StudentService();
 
     [HttpGet]
     public async Task<List<Student>> GetAllAsync()
@@ -43,12 +42,6 @@ public class StudentServiceController
         return await _studentService.DeleteAsync(id);
     }
 
-    [HttpGet("{id:int}/progress")]
-    public async Task<object> GetProgressAsync(int id)
-    {
-        var progressBookService = new ProgressBookService();
-        return await progressBookService.GetByStudentIdAsync(id);
-    }
 
     //bonus
     [HttpGet("{id:int}/average-grade")]

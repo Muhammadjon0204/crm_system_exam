@@ -5,10 +5,8 @@ using Infrastructure.Interface;
 
 namespace Infrastructure.Services;
 
-public class GroupService : IGroupService
+public class GroupService(DataContext _dataContext) : IGroupService
 {
-    private readonly DataContext _dataContext = new();
-
     public async Task<List<Group>> GetAllAsync()
     {
         using var connection = _dataContext.CreateConnection();

@@ -5,9 +5,8 @@ using Infrastructure.Interface;
 
 namespace Infrastructure.Services;
 
-public class TimeTableService : ITimeTableService
+public class TimeTableService(DataContext _dataContext) : ITimeTableService
 {
-    private readonly DataContext _dataContext = new();
 
     public async Task<List<TimeTable>> GetByGroupIdAsync(int groupId)
     {
