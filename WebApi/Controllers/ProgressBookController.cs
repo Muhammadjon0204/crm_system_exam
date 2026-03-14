@@ -16,7 +16,7 @@ public class ProgressBookController(IProgressBookService _progressBookService)
         return await _progressBookService.AddAsync(progressBook);
     }
 
-    [HttpGet("{group/id:int}/progress")]
+    [HttpGet("group/{id:int}/progress")]
     public async Task<object> GetProgressAsync(int groupId)
     {
 
@@ -28,7 +28,7 @@ public class ProgressBookController(IProgressBookService _progressBookService)
     {
         return await _progressBookService.UpdateAsync(id, progressBook);
     }
-    [HttpGet("{student/id:int}/progress")]
+    [HttpGet("student/{id:int}/progress")]
     public async Task<object> GetProgressOfStusentAsync(int id)
     {
         return await _progressBookService.GetByStudentIdAsync(id);

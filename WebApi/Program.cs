@@ -4,10 +4,11 @@ using Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddOpenApi();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<DataContext>();
 
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IGroupService, GroupService>();
@@ -25,6 +26,5 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.MapControllers();
-app.MapSwagger();
 
 app.Run();
