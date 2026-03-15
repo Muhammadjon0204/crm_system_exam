@@ -1,0 +1,19 @@
+# Логи — никому не нужны
+logs/
+*.txt
+
+# Настройки с паролями БД — важно!
+**/appsettings.json
+**/appsettings.*.json
+
+# Rider и VS Code
+.idea/
+.vscode/
+
+# Build файлы
+bin/
+obj/
+
+# .NET
+*.user
+*.suo
